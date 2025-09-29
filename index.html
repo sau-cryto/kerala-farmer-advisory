@@ -1,0 +1,151 @@
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, MapPin, Camera, Globe, Sparkles } from "lucide-react"
+import Link from "next/link"
+
+export function HeroSection() {
+  const [language, setLanguage] = useState<"en" | "ml">("en")
+
+  const toggleLanguage = () => {
+    setLanguage(prev => (prev === "en" ? "ml" : "en"))
+  }
+
+  return (
+    <section className="relative overflow-hidden bg-background py-24 sm:py-32 lg:py-40">
+      {/* Background layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-primary/5" />
+      <div className="absolute inset-0 bg-[url('/kerala-rice-fields-landscape.jpg')] bg-cover bg-center opacity-[0.03]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Language toggle in top-right corner */}
+        <div className="flex justify-end mb-6">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleLanguage}
+            className="border-border hover:bg-muted/30"
+          >
+            🌐 {language === "en" ? "മലയാളം" : "English"}
+          </Button>
+        </div>
+
+        <div className="mx-auto max-w-3xl text-center">
+          {/* Badge */}
+          <div className="mb-8 flex justify-center animate-fade-in">
+            <div className="relative rounded-full px-4 py-2 text-sm font-medium text-muted-foreground ring-1 ring-border/50 hover:ring-primary/30 transition-all duration-300 bg-card/50 backdrop-blur-sm">
+              <Sparkles className="inline-block w-4 h-4 mr-2 text-primary" />
+              {language === "en"
+                ? "Next-Generation Agricultural Technology"
+                : "അടുത്ത തലമുറ കാർഷിക സാങ്കേതികവിദ്യ"}
+            </div>
+          </div>
+
+          {/* Hero Title */}
+          <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl lg:text-8xl text-balance mb-8">
+            {language === "en" ? (
+              <>
+                <span className="block">Smart</span>
+                <span className="block text-primary">Agriculture</span>
+                <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium text-muted-foreground mt-4">
+                  Redefined
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="block text-primary">സ്മാർട്ട്</span>
+                <span className="block">കൃഷി</span>
+                <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium text-muted-foreground mt-4">
+                  പുനർനിർവചിച്ചു
+                </span>
+              </>
+            )}
+          </h1>
+
+          {/* Description */}
+          <p className="text-xl leading-8 text-muted-foreground text-pretty max-w-2xl mx-auto mb-12">
+            {language === "en"
+              ? "Empowering farmers with cutting-edge AI technology, real-time insights, and comprehensive agricultural solutions for sustainable farming practices."
+              : "സുസ്ഥിര കൃഷിരീതികൾക്കായി അത്യാധുനിക AI സാങ്കേതികവിദ്യ, തത്സമയ ഉൾക്കാഴ്ചകൾ, സമഗ്ര കാർഷിക പരിഹാരങ്ങൾ എന്നിവയിലൂടെ കർഷകരെ ശാക്തീകരിക്കുന്നു."}
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-medium rounded-lg transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/dashboard">
+                {language === "en" ? "Get Started" : "ആരംഭിക്കുക"}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="px-8 py-6 text-lg font-medium rounded-lg border-2 hover:bg-muted/50 transition-all duration-300 bg-transparent"
+            >
+              <Link href="/chat">
+                {language === "en" ? "Consult Expert" : "വിദഗ്ധനോട് ചോദിക്കുക"}
+              </Link>
+            </Button>
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="mx-auto mt-20 max-w-5xl">
+          <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {/* Feature 1 */}
+            <div className="flex flex-col items-center text-center p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg">
+              <dt className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                <MapPin className="h-8 w-8 text-primary" />
+              </dt>
+              <dt className="text-xl font-semibold text-foreground mb-4">
+                {language === "en" ? "Regional Intelligence" : "പ്രാദേശിക ബുദ്ധി"}
+              </dt>
+              <dd className="text-base text-muted-foreground leading-7">
+                {language === "en"
+                  ? "Hyper-localized weather data, soil analysis, and crop recommendations tailored to your specific region and conditions."
+                  : "നിങ്ങളുടെ പ്രദേശത്തിനും അവസ്ഥകൾക്കും അനുയോജ്യമായ കാലാവസ്ഥാ ഡാറ്റ, മണ്ണ് വിശകലനം, വിള ശുപാർശകൾ."}
+              </dd>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="flex flex-col items-center text-center p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg">
+              <dt className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                <Camera className="h-8 w-8 text-primary" />
+              </dt>
+              <dt className="text-xl font-semibold text-foreground mb-4">
+                {language === "en" ? "AI Diagnostics" : "AI രോഗനിർണയം"}
+              </dt>
+              <dd className="text-base text-muted-foreground leading-7">
+                {language === "en"
+                  ? "Advanced computer vision for instant plant disease detection, pest identification, and precision treatment recommendations."
+                  : "തൽക്ഷണ സസ്യ രോഗ കണ്ടെത്തൽ, കീട തിരിച്ചറിയൽ, കൃത്യമായ ചികിത്സാ ശുപാർശകൾ."}
+              </dd>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="flex flex-col items-center text-center p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg">
+              <dt className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                <Globe className="h-8 w-8 text-primary" />
+              </dt>
+              <dt className="text-xl font-semibold text-foreground mb-4">
+                {language === "en" ? "Global Accessibility" : "ആഗോള പ്രവേശനക്ഷമത"}
+              </dt>
+              <dd className="text-base text-muted-foreground leading-7">
+                {language === "en"
+                  ? "Seamless multilingual experience with cultural context, ensuring technology serves every farmer effectively."
+                  : "സാംസ്കാരിക സന്ദർഭത്തോടുകൂടിയ തടസ്സമില്ലാത്ത ബഹുഭാഷാ അനുഭവം, സാങ്കേതികവിദ്യ എല്ലാ കർഷകരെയും ഫലപ്രദമായി സേവിക്കുന്നു."}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  )
+}
